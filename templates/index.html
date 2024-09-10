@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Comparison Tool</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #4C5361; /* Pantone 431 C for background */
+            color: #FFFFFF; /* White text */
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #FFA647; /* Pantone 137 C for headings */
+        }
+        .container {
+            margin: auto;
+            background-color: #373C4A; /* Pantone 432 C for container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="file"] {
+            border: 2px solid #FFFD42; /* Pantone 1235 C for input borders */
+            padding: 10px;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #FFDE59; /* Pantone 121 C for submit button */
+            color: #373C4A; /* Pantone 432 C for button text */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #F7CA00; /* A darker shade for hover effect */
+        }
+        .results {
+            background-color: #FFFFFF; /* White for results background */
+            color: #373C4A; /* Pantone 432 C for text color */
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: block;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> CSV Comparison Tool</h1>
+        <h3>By VirtualFort</h3>
+        <form action="/compare" method="post" enctype="multipart/form-data">
+            <input type="file" name="file1">
+            <input type="file" name="file2">
+            <input type="submit" value="Compare Files">
+        </form>
+        {% if unique_rows_html %}
+            <div class="results">
+                <h2>Comparison Results</h2>
+                {{ unique_rows_html|safe }}
+            </div>
+        {% else %}
+            <h2>No data to display or files to compare.</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
